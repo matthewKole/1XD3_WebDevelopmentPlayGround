@@ -1,0 +1,35 @@
+/* 
+Author Name: Matthew Kolesnik
+Date: 1 Feb 2026 
+*/
+
+body{
+    margin: 10px;
+}
+
+.header{
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-bottom: 0.33rem solid black;
+    margin-bottom: 1.5rem;
+}
+
+.header img{
+    width: 3rem;
+    height: auto;
+    position: absolute;
+    left: 0;
+}
+
+.Article{
+    width: autos;
+}
+
+.Article.articleTitle{
+    margin-top: 0;
+    margin-bottom: 0;
+}
