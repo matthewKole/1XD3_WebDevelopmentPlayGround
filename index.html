@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--
 TODO: This is a comment. Change this header comment to describe the 
 web page and include your name as author.
@@ -6,95 +6,44 @@ web page and include your name as author.
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>Portfolio Portal</title>
 
     <link rel="stylesheet" href="cssFolder/portfolioIndex.css" />
   </head>
 
   <body>
-    <div class="header">
-      <h1 class="headerTitle">matthew kolesnik</h1>
+    <div class="container">
+      <!-- Header div -->
+      <div class="header">
+        <h1 class="headerTitle">matthew kolesnik</h1>
 
-      <img
-        class="headerImage"
-        src="globalImages/WelcomeTraveler.png"
-        alt="Medieval villager sweeping dust"
-      />
-      <p>
-        This part of the porfolio is currently under construction, but feel free
-        to look around what I have so far!
-      </p>
-    </div>
+        <!-- NavBar Div-->
+        <div class="navBar">
+          <a href="index.html">homepage</a>
+          <a href="About/about.html">about</a>
+          <a href="Work/work.html">work</a>
+          <a href="1xd3_Journal/journal.html">journal (1xd3)</a>
+        </div>
+        <!-- End of NavBar -->
 
-    <div class="body">
-      <h2>what's here so far</h2>
+        <img
+          class="headerImage"
+          src="globalImages/WelcomeTraveler.png"
+          alt="Cat saying hi"
+        />
+      </div>
 
-      <ul>
-        <li>
-          Course Content
-          <ul>
-            <li>
-              <a href="team/index.html">Los Ratones - Group Project Website</a>
-            </li>
-            <li><a href="work.html">PersonalCourse Work Website</a></li>
-            <li><a href="1xd3_Journal/journal.html">Journal for 1xd3</a></li>
-          </ul>
-        </li>
+      <!-- content Div -->
+      <div class="content">
+        <p>hi, i'm matthew</p>
+        <p>i'm currently in computer science @mcmaster university</p>
+      </div>
 
-        <p></p>
-
-        <li>
-          About me section
-          <ul>
-            <li>
-              Most recent hackathon project (Deltahacks 12) ->
-              <a
-                href="https://devpost.com/software/opinions-n8dmye?ref_content=user-portfolio&ref_feature=in_progress"
-                >link</a
-              >
-            </li>
-            <li>I Love Cats</li>
-
-            <li>
-              Favourite Movies
-
-              <div class="movieLayout">
-                <div class="movie">
-                  <img
-                    class="moviePoster"
-                    src="globalImages/OneBatteAfterAnotherPoster.jpg"
-                    alt="One Battle After Another Movie Poster"
-                  />
-                  <p>One Battle After Another</p>
-                  <p>2025</p>
-                </div>
-                <div class="movie">
-                  <img
-                    class="moviePoster"
-                    src="globalImages/Sinners_(2025_film)_poster.jpg"
-                    alt="Sinners Movie Poster"
-                  />
-                  <p>Sinners</p>
-                  <p>2025</p>
-                </div>
-                <div class="movie">
-                  <img
-                    class="moviePoster"
-                    src="globalImages/MartySupremePoster.jpg"
-                    alt="Marty Supreme Movie Poster"
-                  />
-                  <p>Marty Supreme</p>
-                  <p>2025</p>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-
-    <div class="footer">
-      <p>Last Updated: 12 January 2026</p>
+      <!-- Footer Div-->
+      <div class="footer">
+        <p>Last Updated: 19 January 2026</p>
+      </div>
     </div>
   </body>
 </html>

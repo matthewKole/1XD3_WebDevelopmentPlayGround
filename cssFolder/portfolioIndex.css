@@ -1,6 +1,7 @@
 *{
-    font-family: 'Arial', sans-serif;
-    background-color: #CAEEC2;
+    font-family: 'Verdana', sans-serif;
+    background-color: #d9fad1;
+    box-sizing: border-box;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -8,11 +9,17 @@ h1, h2, h3, h4, h5, h6 {
     color: #015536;
 }
 
+.container {
+    margin: auto;
+    max-width: 768px;
+    padding: 10px;
+}
+
 .headerImage {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 30%;
+    width: 50%;
     border: #047048 2px solid;
     border-radius: 10px;
 }
@@ -23,31 +30,48 @@ h1, h2, h3, h4, h5, h6 {
 
 .headerTitle {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 2.5em;
-    margin-bottom: 35px;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
     text-decoration: underline;
 }
 
-.movieLayout {
+.navBar {
     display: flex;
-    flex-direction: row;
-    gap: 25px;
     justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
     flex-wrap: wrap;
-    padding-top: 1rem;
 }
 
-.movie {
-    border-radius: 15px;
-    border: 2px solid black;
-    background-color: azure;
-    width: 20%;
-    padding: 15px;
+.navBar a {
+    text-decoration: none;
+    color: #015536;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navBar a:hover {
+    color: #047048;
+    font-weight: bold;
+}
+
+.navBar a:not(:last-child)::after {
+    content: "•";
+    margin-left: 1rem;
+    color: #015536;
+}
+
+.content p{
+    color: #015536;
     text-align: center;
 }
 
-.moviePoster {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
+.footer {
+    position: fixed;
+    bottom: 0;       
+    left: 0;
+    width: 100%;            
+    text-align: center;    
+    padding: 10px 0;       
 }
