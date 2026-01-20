@@ -1,0 +1,34 @@
+*{
+    background-color: #1a1a1a;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1, h2{
+    color: azure;
+}
+
+h2{
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    font-weight: normal;
+}
+
+a, p{
+    color: lightgray;
+    padding: 0.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover{
+    color: white;
+    background-color: rgb(53, 60, 66);
+}
