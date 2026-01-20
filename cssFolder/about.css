@@ -32,3 +32,8 @@ a:hover{
     color: white;
     background-color: rgb(53, 60, 66);
 }
+
+img{
+    max-width: 1170px;
+    border-radius: 12px;
+}
