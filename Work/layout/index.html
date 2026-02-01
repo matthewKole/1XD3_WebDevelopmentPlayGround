@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--
 Author: Matthew Kolesnik
 Date: 1 Feb 2025
@@ -7,27 +7,232 @@ Date: 1 Feb 2025
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Newspaper Layout</title>
+    <link rel="stylesheet" href="NewsPaperLayoutCSS/normalize.css" />
     <link rel="stylesheet" href="NewsPaperLayoutCSS/NewsPaperLayout.css" />
   </head>
+
   <body>
     <div class="header">
-      <img
-        class="hamburgerImage"
-        src="Images/Hamburger_icon.svg.png"
-        alt="Hamburger menu dropdown"
-      />
-      <h1 class="NewsPaperTitle">The Daily News</h1>
+      <div class="categories">
+        <img
+          class="hamburgerImage"
+          src="Images/Hamburger_icon.svg.png"
+          alt="Hamburger menu dropdown"
+        />
+
+        <div class="allCategorieTitles">
+          <a href="https://example.com">
+            <div class="categorieTitle">
+              <h2>HEADLINES</h2>
+            </div>
+          </a>
+
+          <a href="https://example.com">
+            <div class="categorieTitle">
+              <h2>SPORTS</h2>
+            </div>
+          </a>
+
+          <a href="https://example.com">
+            <div class="categorieTitle">
+              <h2>LOCAL</h2>
+            </div>
+          </a>
+
+          <a href="https://example.com">
+            <div class="categorieTitle">
+              <h2>WEATHER</h2>
+            </div>
+          </a>
+
+          <a href="https://example.com">
+            <div class="categorieTitle desktopOnly">
+              <h2>ARTS</h2>
+            </div>
+          </a>
+
+          <a href="https://example.com">
+            <div class="categorieTitle desktopOnly">
+              <h2>BUSINESS</h2>
+            </div>
+          </a>
+
+          <a href="https://example.com">
+            <div class="categorieTitle desktopOnly">
+              <h2>POLITICS</h2>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="NewsPaperTitleDiv">
+        <h1 class="NewsPaperTitle">The Daily News</h1>
+      </div>
     </div>
 
-    <div class="Article">
-      <img src="Images/ImagePlaceholder.jpg" alt="Image Placeholder" />
-      <h2 class="articleTitle">Headline Example</h2>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure pariatur
-        ut laboriosam minus itaque officia omnis repellendus voluptates nemo
-        numquam!
-      </p>
+    <!-- Start of Article -->
+    <main class="mainContent">
+      <div class="Article">
+        <img
+          class="articleImg"
+          src="Images/ImagePlaceholder.jpg"
+          alt="Image Placeholder"
+        />
+        <h2 class="articleTitle">Headline Example</h2>
+        <p class="articleContent">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure
+          pariatur ut laboriosam minus itaque officia omnis repellendus
+          voluptates nemo numquam!
+        </p>
+      </div>
+
+      <div class="Article">
+        <img
+          class="articleImg"
+          src="Images/ImagePlaceholder.jpg"
+          alt="Image Placeholder"
+        />
+        <h2 class="articleTitle">Headline Example</h2>
+        <p class="articleContent">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure
+          pariatur ut laboriosam minus itaque officia omnis repellendus
+          voluptates nemo numquam!
+        </p>
+      </div>
+
+      <div class="Article">
+        <img
+          class="articleImg"
+          src="Images/ImagePlaceholder.jpg"
+          alt="Image Placeholder"
+        />
+        <h2 class="articleTitle">Headline Example</h2>
+        <p class="articleContent">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        </p>
+        <p class="desktopOnly">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. A, fuga.
+        </p>
+      </div>
+
+      <div class="Article">
+        <img
+          class="articleImg"
+          src="Images/ImagePlaceholder.jpg"
+          alt="Image Placeholder"
+        />
+        <h2 class="articleTitle">Headline Example</h2>
+        <p class="articleContent">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        </p>
+        <p class="desktopOnly">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. A, fuga.
+        </p>
+      </div>
+
+      <div class="Article">
+        <img
+          class="articleImg"
+          src="Images/ImagePlaceholder.jpg"
+          alt="Image Placeholder"
+        />
+        <h2 class="articleTitle">Headline Example</h2>
+        <p class="articleContent">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        </p>
+        <p class="desktopOnly">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. A, fuga.
+        </p>
+      </div>
+
+      <div class="Article desktopOnly">
+        <img
+          class="articleImg"
+          src="Images/ImagePlaceholder.jpg"
+          alt="Image Placeholder"
+        />
+        <h2 class="articleTitle">Headline Example</h2>
+        <p class="articleContent">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit
+        </p>
+        <p class="desktopOnly">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. A, fuga.
+        </p>
+      </div>
+
+      <div class="Article desktopOnly">
+        <img
+          class="articleImg"
+          src="Images/ImagePlaceholder.jpg"
+          alt="Image Placeholder"
+        />
+        <h2 class="articleTitle">Headline Example</h2>
+        <p class="articleContent">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        </p>
+        <p class="desktopOnly">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. A, fuga.
+        </p>
+      </div>
+
+      <div class="Article desktopOnly">
+        <img
+          class="articleImg"
+          src="Images/ImagePlaceholder.jpg"
+          alt="Image Placeholder"
+        />
+        <h2 class="articleTitle">Headline Example</h2>
+        <p class="articleContent">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        </p>
+        <p class="desktopOnly">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. A, fuga.
+        </p>
+      </div>
+    </main>
+
+    <!-- End of Articles -->
+
+    <div class="footer">
+      <div class="footerContent">
+        <h3 class="footerTitles">Subscribe</h3>
+        <p class="footerColLinks">
+          <a href="https://www.example.com/" class="footerlink"
+            >Digital Access
+          </a>
+
+          <a href="https://www.example.com/" class="footerlink">
+            Home Delivery
+          </a>
+
+          <a href="https://www.example.com/" class="footerlink">
+            Gift Subscriptions
+          </a>
+        </p>
+      </div>
+
+      <div class="footerContent">
+        <h3 class="footerTitles">Account</h3>
+        <p class="footerColLinks">
+          <a href="https://www.example.com/" class="footerlink">Log In </a>
+          <a href="https://www.example.com/" class="footerlink"> Manage </a>
+          <a href="https://www.example.com/" class="footerlink"> Delivery </a>
+        </p>
+      </div>
+
+      <div class="footerContent">
+        <h3 class="footerTitles">Contact</h3>
+        <p class="footerColLinks">
+          <a href="https://www.example.com/" class="footerlink">Tip Hotline </a>
+          <a href="https://www.example.com/" class="footerlink">
+            Help & FAQs
+          </a>
+          <a href="https://www.example.com/" class="footerlink">
+            Advertising
+          </a>
+        </p>
+      </div>
     </div>
   </body>
 </html>
