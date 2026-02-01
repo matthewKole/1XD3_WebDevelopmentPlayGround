@@ -153,15 +153,18 @@ body {
 
 /* ===========================================
    TABLET LAYOUT (481px - 768px)
-   Newspaper style begins
    =========================================== */
 @media (min-width: 481px) and (max-width: 768px) {
     
-    /* Switch to newspaper fonts and colors */
+    /* Switching to newspaper fonts and colors */
     body {
         font-family: 'Georgia', 'Times New Roman', Times, serif;
         background-color: #fdfdfb;
         color: #000000;
+    }
+
+    .desktopOnly{
+        display: none;
     }
 
     .header {
@@ -352,7 +355,6 @@ body {
 
 /* ===========================================
    DESKTOP LAYOUT (769px and up)
-   Full newspaper style
    =========================================== */
 @media (min-width: 769px) {
     
