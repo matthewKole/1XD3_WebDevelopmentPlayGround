@@ -199,12 +199,12 @@ body {
         filter: none;
     }
 
-    .allCategorieTitles {
+    .allCategorieTitles:nth-child(-n+4) {
         display: flex;
         flex-direction: row;
         gap: 0;
         width: 100%;
-        justify-content: space-around;
+        justify-content: center;
     }
 
     .allCategorieTitles a {
@@ -409,7 +409,7 @@ body {
         flex-direction: row;
         gap: 0;
         width: 100%;
-        justify-content: space-around;
+        justify-content: center;
     }
 
     .allCategorieTitles a {
