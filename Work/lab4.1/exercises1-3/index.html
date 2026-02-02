@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 4.1</title>
+  </head>
+  <body>
+    <script>
+      let loop = true;
+      while (loop) {
+        let a = Math.floor(Math.random() * 201) - 100;
+        let b = Math.floor(Math.random() * 201) - 100;
+        let correctAns = a + b;
+
+        loop1 = true;
+
+        while (loop1) {
+          let userAns = prompt(`What is ${a} + ${b}?`);
+          if (userAns == correctAns) {
+            alert("Correct!");
+            loop1 = false;
+          } else {
+            alert("InCorrect, try again");
+          }
+        }
+
+        let playAgain = confirm("Would you like another question?");
+        if (playAgain == false) {
+          loop = false;
+        }
+      }
+
+      alert("Goodbye!");
+    </script>
+  </body>
+</html>
