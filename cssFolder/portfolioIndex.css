@@ -2,7 +2,7 @@
    CSS Variables for Consistency
    =================================== */
 :root {
-    /* Color Palette - Muted, Professional Green Theme */
+    /* Color Palette */
     --bg-primary: #f8faf9;
     --bg-secondary: #f0f4f2;
     --text-primary: #2a3b35;
@@ -136,6 +136,7 @@ a:hover {
     font-weight: 400;
     letter-spacing: -0.02em;
     color: var(--text-primary);
+    margin-bottom: 0%;
 }
 
 /* Social Links */
@@ -144,7 +145,7 @@ a:hover {
     justify-content: center;
     align-items: center;
     gap: var(--spacing-sm);
-    margin-top: var(--spacing-sm);
+    margin-top: var(--spacing-md);
     margin-bottom: var(--spacing-md);
 }
 
@@ -170,6 +171,7 @@ a:hover {
     gap: var(--spacing-md);
     padding: var(--spacing-md) 0;
     flex-wrap: wrap;
+    padding-top: 0%;
 }
 
 .nav-link {
