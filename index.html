@@ -1,49 +1,86 @@
 <!doctype html>
-<!--
-TODO: This is a comment. Change this header comment to describe the 
-web page and include your name as author.
--->
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Portfolio Portal</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Matthew Kolesnik - Computer Science student at McMaster University"
+    />
+    <title>Matthew Kolesnik - Portfolio</title>
+    <link rel="stylesheet" href="cssFolder/normalize.css" />
     <link rel="stylesheet" href="cssFolder/portfolioIndex.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
     <div class="container">
-      <!-- Header div -->
-      <div class="header">
-        <h1 class="headerTitle">matthew kolesnik</h1>
+      <!-- Header Section -->
+      <header class="header">
+        <h1 class="headerTitle">Matthew Kolesnik</h1>
 
-        <!-- NavBar Div-->
-        <div class="navBar">
-          <a href="index.html">homepage</a>
-          <a href="About/about.html">about</a>
-          <a href="Work/work.html">work</a>
-          <a href="1xd3_Journal/journal.html">journal (1xd3)</a>
+        <!--Linkedin, Github, Gmail Icons-->
+        <div class="social-links">
+          <a
+            href="https://www.linkedin.com/in/matthewkolesnik/"
+            target="_blank"
+            aria-label="LinkedIn"
+          >
+            <img
+              src="globalImages/linkedin.png"
+              alt="LinkedIn"
+              class="social-icon"
+            />
+          </a>
+
+          <a
+            href="https://github.com/matthewKole"
+            target="_blank"
+            aria-label="GitHub"
+          >
+            <img
+              src="globalImages/github-sign.png"
+              alt="GitHub"
+              class="social-icon"
+            />
+          </a>
+
+          <a href="mailto:kolesnm@mcmaster.com" aria-label="Email">
+            <img src="globalImages/email.png" alt="Email" class="social-icon" />
+          </a>
         </div>
-        <!-- End of NavBar -->
 
+        <!-- Navigation -->
+        <nav class="navBar">
+          <a href="index.html" class="nav-link">homepage</a>
+          <a href="About/about.html" class="nav-link">about</a>
+          <a href="Work/work.html" class="nav-link">work</a>
+          <a href="1xd3_Journal/journal.html" class="nav-link"
+            >journal (1xd3)</a
+          >
+        </nav>
+      </header>
+
+      <!-- Main Content -->
+      <main class="content">
+        <p class="intro">Hi, I'm Matthew</p>
+        <p class="description">
+          I'm currently studying computer science at McMaster University
+        </p>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
         <img
-          class="headerImage"
-          src="globalImages/WelcomeTraveler.png"
-          alt="Cat saying hi"
+          src="globalImages/Drawing.sketchpad (3).svg"
+          alt="A Drawing of me"
         />
-      </div>
-
-      <!-- content Div -->
-      <div class="content">
-        <p>hi, i'm matthew</p>
-        <p>i'm currently in computer science @mcmaster university</p>
-      </div>
-
-      <!-- Footer Div-->
-      <div class="footer">
-        <p>Last Updated: 19 January 2026</p>
-      </div>
+      </footer>
     </div>
   </body>
 </html>
