@@ -16,10 +16,13 @@
     <div id="target" style="color: red"></div>
 
     <script>
-      const userInput = prompt("Enter a positive number");
-      for (let ctr = 0; ctr < userInput; ctr++) {
-        document.getElementById("target").innerHTML += `<p> ${ctr + 1} </p>`;
+      function func() {
+        let userInput = prompt("Enter a positive number");
+        for (let ctr = 0; ctr < userInput; ctr++) {
+          document.getElementById("target").innerHTML += `<p> ${ctr + 1} </p>`;
+        }
       }
+      func();
     </script>
   </body>
 </html>
