@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Simple innerHTML Example</title>
+    <style>
+      div {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>DOM exercise</h1>
+    <div id="target" style="color: red"></div>
+
+    <script>
+      const userInput = prompt("Enter a positive number");
+      for (let ctr = 0; ctr < userInput; ctr++) {
+        document.getElementById("target").innerHTML += `<p> ${ctr + 1} </p>`;
+      }
+    </script>
+  </body>
+</html>
