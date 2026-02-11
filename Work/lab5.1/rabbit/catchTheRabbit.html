@@ -1,0 +1,71 @@
+<!doctype html>
+<!--
+Try to turn this into a "catch the rabbit" game where the rabbit appears to 
+"move" one space to the right whenever you mouse over it. After 4 attempts 
+to mouse over, it should show the "No Easter Eggs" message. After 20 attempts, 
+it should show "Humans are slow!!!". Put all your code in a .js file that is
+loaded from the <head> element.
+
+You can alter the CSS you have been given, but not the HTML.
+
+Try to keep your JavaScript code economical (i.e., don't write more code
+or create more functions than absolutely necessary.)
+
+Hint: Make the rabbit "move" by hiding and showing images. Use CSS 
+visibility:hidden and visibility:visible to hide/show the rabbit images as
+necessary. The visibility property hides an element without removing it from 
+the page, so the page layout is not altered. In contrast, display: none removes 
+it from the page completely and can cause the page layout to change.
+
+Sam Scott, McMaster, 2025
+-->
+<html>
+  <head>
+    <title>Catch the Rabbit</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="catchTheRabbit.css" />
+
+    <style></style>
+  </head>
+
+  <body>
+    <h1>Catch the Easter Bunny to get your egg!</h1>
+    <img src="rabbit.png" id="rabbit1" alt="Catch the rabbit" />
+    <img src="rabbit.png" id="rabbit2" alt="Catch the rabbit" />
+    <img src="rabbit.png" id="rabbit3" alt="Catch the rabbit" />
+    <img src="rabbit.png" id="rabbit4" alt="Catch the rabbit" />
+    <h2 id="noeggs">No Easter Eggs for You</h2>
+    <h2 id="slow">Humans are slow!!!</h2>
+
+    <script>
+      let count = 0;
+      const rabbits = [
+        document.getElementById("rabbit1"),
+        document.getElementById("rabbit2"),
+        document.getElementById("rabbit3"),
+        document.getElementById("rabbit4"),
+      ];
+      const noEggs = document.getElementById("noeggs");
+      const slow = document.getElementById("slow");
+
+      rabbits[0].style.visibility = "visible";
+
+      function moveRabbit() {
+        count++;
+
+        rabbits[(count - 1) % 4].style.visibility = "hidden";
+        rabbits[count % 4].style.visibility = "visible";
+
+        if (count === 4) {
+          noEggs.style.visibility = "visible";
+        } else if (count === 20) {
+          slow.style.visibility = "visible";
+        }
+      }
+
+      rabbits.forEach((rabbit) => {
+        rabbit.addEventListener("mouseover", moveRabbit);
+      });
+    </script>
+  </body>
+</html>

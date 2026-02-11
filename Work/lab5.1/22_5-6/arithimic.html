@@ -1,0 +1,96 @@
+<!doctype html>
+<!--
+Turn this into a working arithmetic app.
+Sam Scott, McMaster, 2024
+-->
+<html>
+  <head>
+    <title>Arithmetic</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <style type="text/css">
+      body {
+        font-size: 20px;
+        font-family: sans-serif;
+      }
+      input[type="number"],
+      input[type="text"],
+      select {
+        width: 50px;
+        font-family: sans-serif;
+        text-align: right;
+        font-size: 20px;
+      }
+      input[type="button"] {
+        font-size: 20px;
+        width: 170px;
+      }
+      #wrapper {
+        margin: auto;
+        width: 380px;
+        background-color: blanchedalmond;
+        padding: 10px;
+        padding-top: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+        <h1>I Heart Arithmetic...</h1>
+      </header>
+      <form>
+        <input id="number1" type="number" value="2" />
+        <select id="operation">
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
+          <option value="%">%</option>
+        </select>
+        <input id="number2" type="number" value="2" /> =
+        <input id="text" type="text" readonly value="4" /><br />
+      </form>
+    </div>
+
+    <script>
+
+      function calculate() {
+        const num1 = parseFloat(document.getElementById("number1").value);
+        const num2 = parseFloat(document.getElementById("number2").value);
+        const operation = document.getElementById("operation").value;
+        let result;
+
+        switch (operation) {
+          case "+":
+            result = num1 + num2;
+            break;
+          case "-":
+            result = num1 - num2;
+            break;
+          case "*":
+            result = num1 * num2;
+            break;
+          case "/":
+            result = num1 / num2;
+            break;
+          case "%":
+            result = num1 % num2;
+            break;
+          default:
+            result = "Invalid operation";
+        }
+
+        document.getElementById("text").value = result;
+      }
+
+      
+      document.getElementById("number1").addEventListener("input", calculate);
+      document.getElementById("number2").addEventListener("input", calculate);
+      document.getElementById("operation")
+      document.addEventListener("change", calculate);
+
+      calculate();
+    </script>
+  </body>
+</html>
