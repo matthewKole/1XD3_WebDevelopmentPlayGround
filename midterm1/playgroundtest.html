@@ -1,0 +1,28 @@
+  <head>
+    <script>
+        window.addEventListener("load", function(event){
+
+            const clickMe = document.getElementById("foo");
+            const inputColour = document.getElementById("nc");
+
+            clickMe.addEventListener("click", changeBC);
+
+            function changeBC(){
+                let nc = inputColour.value;
+                clickMe.style.backgroundColor = nc;
+
+                setTimeout(changeTC, 2000);
+            }
+
+            function changeTC(){
+                inputColour.style.color = clickMe.style.backgroundColor;
+            }
+            
+        });
+    </script>
+  </head>
+  <body>
+    <div id="foo"> Click me! </div>
+    <input id = "nc" type="color" />
+  </body>
+</html>
