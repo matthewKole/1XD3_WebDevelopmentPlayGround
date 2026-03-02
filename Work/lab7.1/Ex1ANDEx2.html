@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guessing Game</title>
+    <script>
+      class GuessingGame {
+        constructor() {
+          this.number = Math.floor(Math.random() * 100) + 1;
+          this.guesses = 0;
+          this.rounds = 1;
+        }
+
+        guess(num) {
+          this.guesses += 1;
+
+          if (num < this.number) {
+            return "low";
+          } else if (num > this.number) {
+            return "high";
+          } else {
+            return "correct";
+          }
+        }
+      }
+
+      let game;
+
+      if (localStorage.getItem("game")) {
+        const saved = JSON.parse(localStorage.getItem("game"));
+        game = new GuessingGame();
+        game.number = saved.number;
+        game.guesses = saved.guesses;
+        game.rounds = saved.rounds;
+        document.getElementById("guessCount").innerHTML =
+          `Round: ${game.rounds}, Guesses used ${game.guesses}/10`;
+      } else {
+        game = new GuessingGame();
+      }
+
+      function handleGuess() {
+        const input = document.getElementById("guessInput");
+        const userGuess = Number(input.value);
+
+        const message = document.getElementById("message");
+
+        const result = game.guess(userGuess);
+
+        if (result === "correct") {
+          message.textContent = `Correct! You got it in ${game.guesses} guesses! Starting a new game...`;
+          const currentRounds = game.rounds + 1;
+          game = new GuessingGame();
+          game.rounds = currentRounds;
+        } else if (game.guesses >= 10) {
+          message.textContent = `Game over! The number was ${game.number}. Starting a new game...`;
+          const currentRounds = game.rounds + 1;
+          game = new GuessingGame();
+          game.rounds = currentRounds;
+        } else if (result === "low") {
+          message.textContent = `Too low! You have ${10 - game.guesses} guesses left.`;
+        } else {
+          message.textContent = `Too high! You have ${10 - game.guesses} guesses left.`;
+        }
+
+        document.getElementById("guessCount").innerHTML =
+          `Round: ${game.rounds}, Guesses used ${game.guesses}/10`;
+        localStorage.setItem("game", JSON.stringify(game));
+        input.value = "";
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Guessing Game</h1>
+    <p>I'm thinking of a number between 1 and 100. You have 10 guesses!</p>
+
+    <input type="number" id="guessInput" placeholder="Enter your guess" />
+    <button onclick="handleGuess()">Guess!</button>
+
+    <p id="message"></p>
+    <p id="guessCount"></p>
+  </body>
+</html>

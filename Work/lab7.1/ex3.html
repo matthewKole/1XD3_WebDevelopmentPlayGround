@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Example Canvas Animation</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script>
+      class Ball {
+        constructor(x, y, xSpeed, ySpeed) {
+          this.x = x;
+          this.y = y;
+          this.xSpeed = xSpeed;
+          this.ySpeed = ySpeed;
+          this.red = 255;
+          this.green = 0;
+          this.blue = 0;
+          this.radius = 5;
+        }
+        setColor(red, green, blue) {
+          this.red = red;
+          this.green = green;
+          this.blue = blue;
+        }
+        moveOneStep() {
+          this.x += this.xSpeed;
+          this.y += this.ySpeed;
+        }
+        draw(ctx) {
+          ctx.fillStyle =
+            "rgb(" + this.red + "," + this.green + "," + this.blue + ")";
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.closePath();
+          ctx.fill();
+        }
+      }
+
+      window.addEventListener("load", function (event) {
+        const c = document.getElementById("animationCanvas");
+        const ctx = c.getContext("2d");
+        let timerId;
+
+        const balls = [];
+
+        for (let i = 0; i < 500; i++) {
+          const x = Math.random() * c.width;
+          const y = Math.random() * c.height;
+          const xSpeed = Math.random() * 4 - 2;
+          const ySpeed = Math.random() * 4 - 2;
+          const ball = new Ball(x, y, xSpeed, ySpeed);
+          ball.setColor(
+            Math.floor(Math.random() * 256),
+            Math.floor(Math.random() * 256),
+            Math.floor(Math.random() * 256),
+          );
+          balls.push(ball);
+        }
+
+        function startAnimation() {
+          timerId = setInterval(updateAnimation, 16);
+        }
+
+        function stopAnimation() {
+          clearTimeout(timerId);
+        }
+
+        function updateAnimation() {
+          ctx.clearRect(0, 0, c.width, c.height);
+
+          for (let i = 0; i < balls.length; i++) {
+            balls[i].moveOneStep();
+            balls[i].draw(ctx);
+          }
+        }
+
+        startAnimation();
+      });
+    </script>
+  </head>
+  <body style="text-align: center">
+    <canvas
+      id="animationCanvas"
+      width="768"
+      height="400"
+      style="background-color: black"
+    ></canvas>
+  </body>
+</html>
