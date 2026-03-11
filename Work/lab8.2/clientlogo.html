@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Team Logo Animation</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script>
+      window.addEventListener("load", function () {
+        const canvas = document.getElementById("logoCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let timerId;
+
+        // Main centered panel
+        const panel = {
+          width: 660,
+          height: 220,
+
+          get x() {
+            return (canvas.width - this.width) / 2;
+          },
+
+          get y() {
+            return (canvas.height - this.height) / 2;
+          },
+
+          get centerX() {
+            return this.x + this.width / 2;
+          },
+
+          get centerY() {
+            return this.y + this.height / 2;
+          },
+        };
+
+        // Content group inside the panel
+        const content = {
+          emblemSize: 116,
+          gap: 30,
+          textWidth: 360,
+
+          get totalWidth() {
+            return this.emblemSize + this.gap + this.textWidth;
+          },
+
+          get startX() {
+            return panel.x + (panel.width - this.totalWidth) / 2;
+          },
+
+          get emblemCenterX() {
+            return this.startX + this.emblemSize / 2;
+          },
+
+          get emblemCenterY() {
+            return panel.centerY;
+          },
+
+          get textCenterX() {
+            return (
+              this.startX + this.emblemSize + this.gap + this.textWidth / 2
+            );
+          },
+
+          get topBarY() {
+            return panel.y + 62;
+          },
+
+          get titleLine1Y() {
+            return panel.y + 118;
+          },
+
+          get titleLine2Y() {
+            return panel.y + 172;
+          },
+        };
+
+        // Object 1: emblem
+        const emblem = {
+          x: -100,
+          radius: 58,
+          xSpeed: 4,
+
+          get targetX() {
+            return content.emblemCenterX;
+          },
+
+          update() {
+            if (this.x < this.targetX) {
+              this.x += this.xSpeed;
+
+              if (this.x > this.targetX) {
+                this.x = this.targetX;
+              }
+            }
+          },
+
+          draw() {
+            ctx.fillStyle = "rgb(245, 210, 0)";
+            ctx.beginPath();
+            ctx.arc(this.x, content.emblemCenterY, this.radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = "rgb(190, 160, 0)";
+            ctx.beginPath();
+            ctx.arc(this.x, content.emblemCenterY, 30, 0, Math.PI * 2);
+            ctx.fill();
+          },
+        };
+
+        // Object 2: title block
+        const titleText = {
+          offsetX: 250,
+          speed: 6,
+          line1: "McMaster Venture",
+          line2: "Capital Club",
+
+          update() {
+            if (this.offsetX > 0) {
+              this.offsetX -= this.speed;
+
+              if (this.offsetX < 0) {
+                this.offsetX = 0;
+              }
+            }
+          },
+
+          draw() {
+            ctx.fillStyle = "white";
+            ctx.font = "bold 37px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText(
+              this.line1,
+              content.textCenterX + this.offsetX,
+              content.titleLine1Y,
+            );
+            ctx.fillText(
+              this.line2,
+              content.textCenterX + this.offsetX,
+              content.titleLine2Y,
+            );
+          },
+        };
+
+        // Object 3: top bar
+        const topBar = {
+          width: 0,
+          targetWidth: 320,
+
+          update() {
+            if (titleText.offsetX === 0 && this.width < this.targetWidth) {
+              this.width += 8;
+
+              if (this.width > this.targetWidth) {
+                this.width = this.targetWidth;
+              }
+            }
+          },
+
+          draw() {
+            const x = content.textCenterX - this.width / 2;
+            ctx.fillStyle = "rgb(245, 210, 0)";
+            ctx.fillRect(x, content.topBarY, this.width, 4);
+          },
+        };
+
+        function startAnimation() {
+          timerId = setInterval(updateAnimation, 16);
+        }
+
+        function stopAnimation() {
+          clearInterval(timerId);
+        }
+
+        function drawBackground() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          // outer background
+          ctx.fillStyle = "black";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          // outer dark frame
+          ctx.fillStyle = "rgb(10, 12, 20)";
+          ctx.fillRect(
+            panel.x - 28,
+            panel.y - 28,
+            panel.width + 56,
+            panel.height + 56,
+          );
+
+          // main centered panel
+          ctx.fillStyle = "rgb(26, 26, 30)";
+          ctx.fillRect(panel.x, panel.y, panel.width, panel.height);
+        }
+
+        function updateAnimation() {
+          drawBackground();
+
+          emblem.update();
+          titleText.update();
+          topBar.update();
+
+          emblem.draw();
+          topBar.draw();
+          titleText.draw();
+
+          if (
+            emblem.x === emblem.targetX &&
+            titleText.offsetX === 0 &&
+            topBar.width === topBar.targetWidth
+          ) {
+            stopAnimation();
+          }
+        }
+
+        startAnimation();
+      });
+    </script>
+  </head>
+
+  <body style="margin: 0; text-align: center; background-color: black">
+    <canvas
+      id="logoCanvas"
+      width="768"
+      height="400"
+      style="background-color: black"
+    ></canvas>
+  </body>
+</html>

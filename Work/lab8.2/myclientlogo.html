@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MVCC Logo</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #eeebe4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+      }
+      canvas {
+        /* Square canvas makes centering more predictable */
+        width: 500px;
+        height: 500px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <canvas id="logoCanvas"></canvas>
+    </div>
+
+    <script>
+      const canvas = document.getElementById("logoCanvas");
+      const ctx = canvas.getContext("2d");
+
+      // --- 1. SETUP ---
+      const dpr = window.devicePixelRatio || 1;
+      const size = 500;
+      canvas.width = size * dpr;
+      canvas.height = size * dpr;
+      ctx.scale(dpr, dpr);
+
+      // Logo Proportions (Flatter & Wider)
+      const logoWidth = 300;
+      const halfWidth = logoWidth / 2;
+      const baseY = 40; // Y-distance from center
+      const peakY = -65; // Y-distance from center (Negative is UP)
+      const midY = -12; // The "parallel cut-off" height
+
+      // --- 2. THE PATHS (Centered around 0,0) ---
+
+      // Maroon "M"
+      const maroon = new Path2D();
+      maroon.moveTo(-halfWidth, baseY); // Bottom Left
+      maroon.lineTo(-45, peakY); // Peak
+      maroon.lineTo(2, midY); // Cut-off
+      maroon.lineTo(-40, baseY); // Inner Notch
+      maroon.closePath();
+
+      // Gold "V"
+      const gold = new Path2D();
+      gold.moveTo(-8, midY); // Start parallel to maroon
+      gold.lineTo(40, peakY); // Peak
+      gold.lineTo(halfWidth, baseY); // Bottom Right
+
+      // --- 3. ANIMATION ---
+      const DRAW_TIME = 3000;
+      const TEXT_TIME = 500;
+      let startTime = null;
+
+      function easeOutQuart(t) {
+        return 1 - Math.pow(1 - t, 4);
+      }
+
+      function animate(now) {
+        if (!startTime) startTime = now;
+        const elapsed = now - startTime;
+        ctx.clearRect(0, 0, size, size);
+
+        // --- CENTERING MAGIC ---
+        ctx.save();
+        // Shift origin to middle of canvas, then slightly up to account for text at bottom
+        ctx.translate(size / 2, size / 2 - 30);
+
+        const drawProg = easeOutQuart(Math.min(elapsed / DRAW_TIME, 1));
+
+        ctx.lineWidth = 22;
+        ctx.lineJoin = "miter";
+        ctx.miterLimit = 10;
+
+        // Draw Gold (Back)
+        ctx.save();
+        ctx.strokeStyle = "#B08B2E";
+        ctx.setLineDash([500]);
+        ctx.lineDashOffset = 500 * (1 - drawProg);
+        ctx.stroke(gold);
+        ctx.restore();
+
+        // Draw Maroon (Front)
+        ctx.save();
+        ctx.strokeStyle = "#8C1A1A";
+        ctx.setLineDash([600]);
+        ctx.lineDashOffset = 600 * (1 - drawProg);
+        ctx.stroke(maroon);
+        ctx.restore();
+
+        // --- UNSTRETCHED TEXT ---
+        if (elapsed > DRAW_TIME * 0.5) {
+          const textProg = Math.min((elapsed - DRAW_TIME * 0.5) / TEXT_TIME, 1);
+
+          ctx.save();
+          ctx.globalAlpha = textProg;
+          ctx.fillStyle = "#8C1A1A";
+
+          // Position the text relative to the center
+          ctx.translate(0, 110 - textProg * 10);
+
+          // Squash it vertically (0.85) and stretch it horizontally (1.2)
+          ctx.scale(1.2, 0.85);
+
+          ctx.font = '900 70px "Arial Black", Gadget, sans-serif';
+          ctx.textAlign = "center";
+
+          if ("letterSpacing" in ctx) {
+            ctx.letterSpacing = "-5px"; // Tight professional spacing
+          }
+
+          ctx.fillText("MVCC", 0, 0);
+          ctx.restore();
+        }
+
+        ctx.restore(); // End centering translate
+
+        if (elapsed < DRAW_TIME + TEXT_TIME) {
+          requestAnimationFrame(animate);
+        }
+      }
+
+      requestAnimationFrame(animate);
+    </script>
+  </body>
+</html>
