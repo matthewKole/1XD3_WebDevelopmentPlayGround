@@ -1,5 +1,5 @@
 <?php
-$fruits = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png'];
+$fruits = ['images/1.png', 'images/2.png', 'images/3.png', 'images/4.png', 'images/5.png', 'images/6.png', 'images/7.png'];
 
 $index1 = rand(0, count($fruits) - 1);
 $index2 = rand(0, count($fruits) - 1);
@@ -13,10 +13,10 @@ $message = "";
 $resultClass = "";
 
 if ($index1 == $index2 && $index2 == $index3) {
-    $message = "JACKPOT! 🎰";
+    $message = "JACKPOT!";
     $resultClass = "jackpot";
 } elseif ($index1 == $index2 || $index1 == $index3 || $index2 == $index3) {
-    $message = "You win! 💸";
+    $message = "You win!";
     $resultClass = "win";
 } else {
     $message = "Try Again!";
@@ -93,9 +93,9 @@ $currentFile = basename($_SERVER['PHP_SELF']);
 
     <div class="machine">
         <div class="slots">
-            <img src="images/<?php echo $slot1; ?>" alt="Slot 1">
-            <img src="images/<?php echo $slot2; ?>" alt="Slot 2">
-            <img src="images/<?php echo $slot3; ?>" alt="Slot 3">
+            <img src="<?php echo $slot1; ?>" alt="Slot 1">
+            <img src="<?php echo $slot2; ?>" alt="Slot 2">
+            <img src="<?php echo $slot3; ?>" alt="Slot 3">
         </div>
 
         <div class="message <?php echo $resultClass; ?>">

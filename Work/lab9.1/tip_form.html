@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tip Calculator - Form</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .container { max-width: 400px; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+        input[type="text"] { width: 100%; padding: 8px; margin-bottom: 10px; }
+        .error { color: red; font-size: 0.9rem; display: none; }
+    </style>
+    <script>
+        function validateForm() {
+            let billInput = document.getElementById("bill").value;
+            let errorMsg = document.getElementById("error-msg");
+
+            if (billInput === "" || isNaN(billInput) || parseFloat(billInput) <= 0) {
+                errorMsg.style.display = "block";
+                return false; 
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Tip Calculator</h2>
+        <form method="POST" action="process_tip.php" onsubmit="return validateForm()">
+            <label for="bill">Bill Amount ($):</label>
+            <input type="text" name="bill" id="bill" placeholder="e.g. 50.00">
+            <p id="error-msg" class="error">Please enter a valid positive number.</p>
+
+            <label for="percentage">Tip Percentage:</label>
+            <select name="percentage">
+                <option value="10">10%</option>
+                <option value="15" selected>15%</option>
+                <option value="20">20%</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Calculate Tip">
+        </form>
+    </div>
+</body>
+</html>
