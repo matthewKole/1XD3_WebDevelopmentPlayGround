@@ -2,43 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tip Calculator - Form</title>
+    <title>Tip Calculator - Input</title>
     <style>
-        body { font-family: sans-serif; padding: 20px; }
-        .container { max-width: 400px; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
-        input[type="text"] { width: 100%; padding: 8px; margin-bottom: 10px; }
-        .error { color: red; font-size: 0.9rem; display: none; }
+        body { font-family: sans-serif; background: #f0f2f5; padding: 40px; }
+        .form-container { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 450px; margin: auto; }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        input[type="submit"] { background: #007bff; color: white; border: none; margin-top: 20px; cursor: pointer; font-size: 1rem; }
+        input[type="submit"]:hover { background: #0056b3; }
     </style>
     <script>
-        function validateForm() {
-            let billInput = document.getElementById("bill").value;
-            let errorMsg = document.getElementById("error-msg");
-
-            if (billInput === "" || isNaN(billInput) || parseFloat(billInput) <= 0) {
-                errorMsg.style.display = "block";
-                return false; 
+        function validateEmails() {
+            const email1 = document.getElementById('email1').value;
+            const email2 = document.getElementById('email2').value;
+            
+            if (email1 !== email2) {
+                alert("Error: Email addresses do not match!");
+                return false; // Blocks submission
             }
             return true;
         }
     </script>
 </head>
 <body>
-    <div class="container">
-        <h2>Tip Calculator</h2>
-        <form method="POST" action="process_tip.php" onsubmit="return validateForm()">
-            <label for="bill">Bill Amount ($):</label>
-            <input type="text" name="bill" id="bill" placeholder="e.g. 50.00">
-            <p id="error-msg" class="error">Please enter a valid positive number.</p>
 
-            <label for="percentage">Tip Percentage:</label>
-            <select name="percentage">
-                <option value="10">10%</option>
-                <option value="15" selected>15%</option>
-                <option value="20">20%</option>
-            </select>
-            <br><br>
-            <input type="submit" value="Calculate Tip">
-        </form>
-    </div>
+<div class="form-container">
+    <h2>Service Tip Calculator</h2>
+    <form method="POST" action="process_tip.php" onsubmit="return validateEmails()">
+        <label>Server Name:</label>
+        <input type="text" name="server_name" required>
+
+        <label>Customer Email:</label>
+        <input type="email" name="email1" id="email1" required>
+        
+        <label>Confirm Email:</label>
+        <input type="email" name="email2" id="email2" required>
+
+        <label>Amount of Bill ($):</label>
+        <input type="number" name="bill" step="0.01" min="0.01" required>
+
+        <label>Tip Percentage (Integer %):</label>
+        <input type="number" name="tip_percent" min="0" step="1" required>
+
+        <label>Credit Card Number (16 digits):</label>
+        <input type="text" name="cc_num" maxlength="16" required>
+
+        <input type="submit" value="Calculate Total">
+    </form>
+</div>
+
 </body>
 </html>
