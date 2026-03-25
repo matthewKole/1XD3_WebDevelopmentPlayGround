@@ -1,5 +1,5 @@
 <?php
-try{
+try {
     $dbh = new PDO(
         "mysql:host=localhost;dbname=kolesnm_db;charset=utf8mb4",
         "kolesnm_local",
@@ -10,5 +10,3 @@ try{
 } catch (Exception $e) {
     die("Error connecting to the database: " . $e->getMessage());
 }
-
-?>

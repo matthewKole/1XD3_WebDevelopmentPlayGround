@@ -1,19 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>SELECT * FROM orderdetails;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SQL Query Log</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background-color: #f4f4f9;
+        padding: 20px;
+      }
+      pre {
+        background-color: #2d2d2d;
+        color: #f8f8f2;
+        padding: 15px;
+        border-radius: 8px;
+        overflow-x: auto;
+        line-height: 1.5;
+        font-family: "Courier New", Courier, monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Database Operations Log</h1>
+    <hr />
 
-SELECT * FROM orderdetails WHERE OrderID = 10281;
+    <pre>
+<code>
+-- Basic Data Retrieval
+SELECT * FROM orderdetails;
 
-SELECT ProductID FROM orderdetails WHERE Quantity > 90 ORDER BY Quantity DESC;
+SELECT * FROM orderdetails 
+WHERE OrderID = 10281;
 
-SELECT ProductID FROM orderdetails ORDER BY Quantity DESC LIMIT 1;
+SELECT ProductID 
+FROM orderdetails 
+WHERE Quantity > 90 
+ORDER BY Quantity DESC;
 
+SELECT ProductID 
+FROM orderdetails 
+ORDER BY Quantity DESC 
+LIMIT 1;
+
+-- Employee Records
 INSERT INTO employees (LastName, FirstName, BirthDate, Notes)
 VALUES (
     'Smith',
@@ -22,24 +52,35 @@ VALUES (
     'Amy has a B.A. in Basket Weaving from University of South Southwestern Ontario.'
 );
 
-SELECT * FROM employees WHERE FirstName = 'Amy' AND LastName = 'Smith';
+SELECT * FROM employees 
+WHERE FirstName = 'Amy' AND LastName = 'Smith';
 
-SELECT SupplierID FROM suppliers WHERE SupplierName = 'Bigfoot Breweries';
+-- Supplier Updates
+SELECT SupplierID FROM suppliers 
+WHERE SupplierName = 'Bigfoot Breweries';
 
 UPDATE suppliers
-SET ContactName = 'Mary Shelley', Phone = '(503) 555-4242'
+SET ContactName = 'Mary Shelley', 
+    Phone = '(503) 555-4242'
 WHERE SupplierID = 16;
 
 SELECT * FROM suppliers WHERE SupplierID = 16;
 
-UPDATE orderdetails SET Quantity = Quantity + 10;
+-- Bulk Inventory Updates
+UPDATE orderdetails 
+SET Quantity = Quantity + 10;
 
-UPDATE products SET Price = Price * 0.50 WHERE Price > 10;
+UPDATE products 
+SET Price = Price * 0.50 
+WHERE Price > 10;
 
+-- Cleanup Operations
 SELECT * FROM products WHERE Price <= 10;
 
 DELETE FROM products WHERE Price <= 10;
 
-SELECT * FROM products WHERE Price <= 10;</p>
-</body>
+SELECT * FROM products WHERE Price <= 10;
+</code>
+    </pre>
+  </body>
 </html>

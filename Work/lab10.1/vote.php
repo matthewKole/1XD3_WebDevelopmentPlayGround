@@ -1,11 +1,11 @@
 <?php
-include '../connect.php';
+include './Work/connect.php';
 
 $pdo = null;
 $conn_error = null;
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
+    $pdo = new PDO("mysql:host=$host;dbname=poll;charset=utf8mb4", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     $conn_error = "Could not connect to the database: " . $e->getMessage();
@@ -216,7 +216,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $pdo !== null) {
 
         <div class="header">
             <h1>Cast Your Vote</h1>
-            <p>Poll Voting System &mdash; Lab 10.1</p>
         </div>
 
         <?php if ($conn_error): ?>
