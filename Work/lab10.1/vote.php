@@ -1,6 +1,5 @@
 <?php
 include '../connect.php';
-// connect.php creates $dbh — if it fails it calls die() automatically
 
 $vote_result  = null;
 $vote_message = "";
@@ -76,7 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             padding: 2rem;
             width: 100%;
             max-width: 400px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
         }
 
         h1 {

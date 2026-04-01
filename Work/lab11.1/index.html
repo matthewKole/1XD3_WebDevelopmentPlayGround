@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Password Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    #password {
+      padding: 8px;
+      font-size: 1rem;
+      width: 260px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    #password.ok {
+      border-color: green;
+      background-color: #d4edda;
+    }
+
+    #password.bad {
+      border-color: red;
+      background-color: #f8d7da;
+    }
+
+    #feedback {
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    #feedback.ok  { color: green; }
+    #feedback.bad { color: red;   }
+  </style>
+</head>
+<body>
+
+  <h2>Password Strength Checker</h2>
+
+  <label for="password">Enter Password:</label>
+  <input type="password" id="password" placeholder="Type your password…">
+
+  <p id="feedback"></p>
+
+  <script>
+    const input    = document.getElementById('password');
+    const feedback = document.getElementById('feedback');
+
+    input.addEventListener('input', async () => {
+      const password = input.value;
+
+      // Clear styling when field is empty
+      if (password === '') {
+        input.className   = '';
+        feedback.className = '';
+        feedback.textContent = '';
+        return;
+      }
+
+      try {
+        const response = await fetch('check_password.php', {
+          method : 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body   : 'password=' + encodeURIComponent(password)
+        });
+
+        const code = (await response.text()).trim();
+
+        if (code === 'OK') {
+          input.className      = 'ok';
+          feedback.className   = 'ok';
+          feedback.textContent = '✔ Strong password!';
+        } else {
+          input.className      = 'bad';
+          feedback.className   = 'bad';
+          feedback.textContent = getMessage(code);
+        }
+      } catch (err) {
+        feedback.className   = 'bad';
+        feedback.textContent = 'Error contacting server.';
+      }
+    });
+
+    /* Turn the PHP error code into a human-readable hint */
+    function getMessage(code) {
+      const messages = {
+        TOO_SHORT  : '✘ Must be at least 6 characters.',
+        NO_UPPER   : '✘ Must contain at least one uppercase letter.',
+        NO_LOWER   : '✘ Must contain at least one lowercase letter.',
+        NO_DIGIT   : '✘ Must contain at least one digit.',
+        NO_SYMBOL  : '✘ Must contain at least one symbol (e.g. !@#$).'
+      };
+      return messages[code] || '✘ Weak password.';
+    }
+  </script>
+
+</body>
+</html>
