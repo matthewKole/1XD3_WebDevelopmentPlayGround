@@ -80,7 +80,7 @@
         if (code === 'OK') {
           input.className      = 'ok';
           feedback.className   = 'ok';
-          feedback.textContent = '✔ Strong password!';
+          feedback.textContent = 'Strong password';
         } else {
           input.className      = 'bad';
           feedback.className   = 'bad';
@@ -95,13 +95,13 @@
     /* Turn the PHP error code into a human-readable hint */
     function getMessage(code) {
       const messages = {
-        TOO_SHORT  : '✘ Must be at least 6 characters.',
-        NO_UPPER   : '✘ Must contain at least one uppercase letter.',
-        NO_LOWER   : '✘ Must contain at least one lowercase letter.',
-        NO_DIGIT   : '✘ Must contain at least one digit.',
-        NO_SYMBOL  : '✘ Must contain at least one symbol (e.g. !@#$).'
+        TOO_SHORT  : ' Must be at least 6 characters.',
+        NO_UPPER   : ' Must contain at least one uppercase letter.',
+        NO_LOWER   : ' Must contain at least one lowercase letter.',
+        NO_DIGIT   : ' Must contain at least one digit.',
+        NO_SYMBOL  : ' Must contain at least one symbol (e.g. !@#$).'
       };
-      return messages[code] || '✘ Weak password.';
+      return messages[code] || ' Weak password.';
     }
   </script>
 

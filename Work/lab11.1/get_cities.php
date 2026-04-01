@@ -21,7 +21,7 @@ try {
              WHERE Population BETWEEN :min AND :max
              ORDER BY Population DESC';
 
-    $stmt = $pdo->prepare($sql);
+    $stmt = $dbh->prepare($sql);
     $stmt->execute([':min' => $min, ':max' => $max]);
 
     $cities = $stmt->fetchAll(PDO::FETCH_ASSOC);
