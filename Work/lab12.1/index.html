@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AJAX Slot Machine</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #ececec;
+        display: flex;
+        justify-content: center;
+        padding-top: 50px;
+      }
+      .machine {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 350px;
+      }
+      .slots {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+        font-size: 3rem;
+        background: #222;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      .controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      input[type="number"] {
+        width: 60px;
+        padding: 5px;
+        font-size: 1rem;
+      }
+      button {
+        background: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #218838;
+      }
+      button:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+      }
+      .status {
+        margin-top: 15px;
+        font-weight: bold;
+        min-height: 24px;
+        color: #333;
+      }
+      .error {
+        color: red;
+      }
+      .restart-btn {
+        background: #007bff;
+        display: none;
+        width: 100%;
+        margin-top: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="machine">
+      <h2>Credits: <span id="credit-display">10</span></h2>
+
+      <div class="slots">
+        <span id="slot1">❓</span>
+        <span id="slot2">❓</span>
+        <span id="slot3">❓</span>
+      </div>
+
+      <div class="controls">
+        <label
+          >Bet: <input type="number" id="bet-input" value="1" min="1"
+        /></label>
+        <button id="spin-btn" onclick="spin()">Spin!</button>
+      </div>
+
+      <div class="status" id="message">Loading game...</div>
+      <button class="restart-btn" id="restart-btn" onclick="initGame()">
+        Play Again
+      </button>
+    </div>
+
+    <script>
+      // Initialize the game when the page loads
+      window.onload = initGame;
+
+      function initGame() {
+        const formData = new FormData();
+        formData.append("action", "init");
+
+        fetch("api.php", { method: "POST", body: formData })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              document.getElementById("credit-display").innerText =
+                data.credits;
+              document.getElementById("message").innerText = data.message;
+              document.getElementById("message").className = "status";
+
+              // Reset UI
+              document.getElementById("slot1").innerText = "❓";
+              document.getElementById("slot2").innerText = "❓";
+              document.getElementById("slot3").innerText = "❓";
+              document.getElementById("spin-btn").disabled = false;
+              document.getElementById("bet-input").disabled = false;
+              document.getElementById("restart-btn").style.display = "none";
+            }
+          });
+      }
+
+      function spin() {
+        const betAmount = document.getElementById("bet-input").value;
+        const messageBox = document.getElementById("message");
+
+        const formData = new FormData();
+        formData.append("action", "spin");
+        formData.append("bet", betAmount);
+
+        messageBox.innerText = "Spinning...";
+        messageBox.className = "status";
+
+        fetch("api.php", { method: "POST", body: formData })
+          .then((response) => response.json())
+          .then((data) => {
+            // Handle Server Errors (No session, bad bet amounts)
+            if (data.error) {
+              messageBox.innerText = data.message;
+              messageBox.className = "status error";
+              return;
+            }
+
+            // Update Wheels
+            document.getElementById("slot1").innerText = data.wheels;
+            document.getElementById("slot2").innerText = data.wheels;
+            document.getElementById("slot3").innerText = data.wheels;
+
+            // Update Credits
+            document.getElementById("credit-display").innerText = data.credits;
+
+            // Provide feedback based on matches
+            if (data.matches === 3) {
+              messageBox.innerText = `Jackpot! You won ${data.winnings} credits!`;
+            } else if (data.matches === 2) {
+              messageBox.innerText = `Nice you got... 2 matches ${data.winnings} credits!`;
+            } else {
+              messageBox.innerText = `No matches. You lost.`;
+            }
+
+            // Handle Game Over
+            if (data.gameOver) {
+              messageBox.innerText += " OUT OF FUNDS. Game Over!";
+              messageBox.className = "status error";
+              document.getElementById("spin-btn").disabled = true;
+              document.getElementById("bet-input").disabled = true;
+              document.getElementById("restart-btn").style.display = "block";
+            }
+          })
+          .catch((error) => {
+            messageBox.innerText = "Connection error.";
+            messageBox.className = "status error";
+          });
+      }
+    </script>
+  </body>
+</html>
